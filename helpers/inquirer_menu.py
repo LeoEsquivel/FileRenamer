@@ -12,8 +12,9 @@ menu_options = [
 rename_options = [
     inquirer.List('select', 
                     message='Seleccione una opción',
-                    choices= [  '1.- Agregar nombre manual',
-                                '2.- Agregar nombre desde IMDB', 
+                    choices= [  
+                                '1.- Agregar nombre desde IMDB',
+                                '2.- Agregar solo nombre de la serie', 
                                 '0.- Salir',  
                             ]    
                 ),
@@ -27,14 +28,37 @@ def renameMenuOptions():
     answer = inquirer.prompt(rename_options)
     return answer
 
-def messagesInput():
+def messagesInputManual():
     answers = [
-        inquirer.Text(name="carpeta", message="Ingresa la locación de la carpeta: "),
-        inquirer.Text(name="nombre_files", message="Ingresa el nombre de la serie: "),
+        inquirer.Text(name="carpeta", message="Ingresa la locación de la carpeta"),
+        inquirer.Text(name="nombre_files", message="Ingresa el nombre de la serie"),
     ]
 
     return inquirer.prompt(answers)
 
+def messageInputFolderName():
+    answer = [
+        inquirer.Text(name="folder", message="Ubicación de la carpeta")
+    ]
+
+    return inquirer.prompt(answer)
+
+def imbd_MessageMenu():
+    answers = [
+        inquirer.Text(name="link", message="Ingresa la pagina de IBDB de la serie"),
+    ]
+
+    return inquirer.prompt(answers)
+
+def imdb_SeasonsMenu( seasons ):
+    question = [
+        inquirer.List('season',
+                        message="Seleccione una temporada",
+                        choices= seasons
+                    )
+    ]
+
+    return inquirer.prompt(question)
 
 def pausa():
     question = [
